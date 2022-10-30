@@ -1,30 +1,30 @@
 package hard;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PowerSet {
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
-        int i = 0;
+        int[] arr = {1, 2, 3};
 
-        PowerSet obj = new PowerSet();
-        obj.powerSet(list, new ArrayDeque<>(), i, new ArrayList<>());
+        List<Integer> path = new ArrayList<>();
 
+        printSequences(arr, 0, path);
     }
 
-    void powerSet(List<Integer> arr, Deque<Integer> subset, int i, List<Deque<Integer>> answer) {
+    public static void printSequences(int[] arr, int index, List<Integer> path) {
+        if (index == arr.length) {
+            if(path.size() > 0) {
+                System.out.println(path);
+            }
+        } else {
+            //taken
+            printSequences(arr, index + 1, path);
+            path.add(arr[index]);
 
-        if(i == arr.size()) {
-            answer.add(subset);
-            return;
+            //non taken
+            printSequences(arr, index + 1, path);
+            path.remove(path.size() - 1);
         }
-
-       //for take
-        subset.add(arr.get(i));
-        powerSet(arr, subset, i+1, answer);
-
-        //for not take
-        subset.remove();
-        powerSet(arr, subset, i+1, answer);
     }
 }
