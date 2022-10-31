@@ -14,6 +14,7 @@ public class Factorial {
     }
 
     int findFactorial(int num) {
+        // in this we can also compare num == 1, because 1! is also 1 and 0! is also 1
         if(num == 0)
             return 1;
 
